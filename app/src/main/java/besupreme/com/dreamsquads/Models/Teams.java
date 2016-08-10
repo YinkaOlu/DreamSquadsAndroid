@@ -1,0 +1,71 @@
+package besupreme.com.dreamsquads.Models;
+
+import besupreme.com.dreamsquads.R;
+
+/**
+ * Created by yinka_000 on 2016-08-10.
+ */
+public class Teams {
+    public static final String[] TEAM_NAMES = {"Atlanta Hawks",
+            "Boston Celtics",
+            "Brooklyn Nets",
+            "Charlotte Hornets",
+            "Chicago Bulls",
+            "Cleveland Cavaliers",
+            "Dallas Mavericks",
+            "Denver Nuggets",
+            "Detroit Pistons",
+            "Golden State Warriors",
+            "Houston Rockets",
+            "Indiana Pacers",
+            "LA Clippers",
+            "LA Lakers",
+            "Memphis Grizzlies",
+            "Miami Heat",
+            "Milwaukee Bucks",
+            "Minnesota Timberwolves",
+            "New Orleans Pelicans",
+            "New York Knicks",
+            "OKC Thunder",
+            "Orlando Magic",
+            "Philadelphia 76ers",
+            "Phoenix Suns",
+            "Portland Trail Blazers",
+            "Sacremento Kings",
+            "San Antonio Spurs",
+            "Toronto Raptors",
+            "Utah Jazz",
+            "Washington Wizards"};
+
+
+    public static final Integer[] TEAM_LOGOS = {R.drawable.atlanta_hawks,
+            R.drawable.boston_celtics,
+            R.drawable.brooklyn_nets,
+            R.drawable.charlotte_hornets,
+            R.drawable.chicago_bulls,
+            R.drawable.cleveland_cavaliers,
+            R.drawable.dallas_mavericks,
+            R.drawable.denver_nuggets,
+            R.drawable.detroit_pistons,
+            R.drawable.golden_state_warriors,
+            R.drawable.houston_rockets,
+            R.drawable.indiana_pacers,
+            R.drawable.la_clippers,
+            R.drawable.la_lakers,
+            R.drawable.memphis_grizzlies,
+            R.drawable.miami_heat,
+            R.drawable.milwaukee_bucks,
+            R.drawable.minnesota_timberwolves,
+            R.drawable.new_orleans_pelicans,
+            R.drawable.new_york_knicks,
+            R.drawable.okc_thunder,
+            R.drawable.orlando_magic,
+            R.drawable.philadelphia_76ers,
+            R.drawable.phoenix_suns,
+            R.drawable.portland_trail_blazers,
+            R.drawable.sacramento_kings,
+            R.drawable.san_antonio_spurs,
+            R.drawable.toronto_raptors,
+            R.drawable.utah_jazz,
+            R.drawable.washington_wizards};
+}
