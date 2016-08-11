@@ -1,9 +1,12 @@
 package besupreme.com.dreamsquads.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by yinka_000 on 2016-08-11.
  */
-public class Game {
+public class Game implements Parcelable{
     private int plusMinus;
     private int PTS;
     private int fouls;
@@ -15,12 +18,14 @@ public class Game {
     private int ORB;
     private int FTA;
     private int FTM;
-    private int thress_attempted;
+    private int threes_attempted;
     private int threes_made;
     private int FGA;
     private int FGM;
     private int minutes;
     private String date;
+
+    public Game(){}
 
     public int getPlusMinus() {
         return plusMinus;
@@ -110,12 +115,12 @@ public class Game {
         FTM = mFTM;
     }
 
-    public int getThress_attempted() {
-        return thress_attempted;
+    public int getThrees_attempted() {
+        return threes_attempted;
     }
 
-    public void setThress_attempted(int mThress_attempted) {
-        thress_attempted = mThress_attempted;
+    public void setThrees_attempted(int mThrees_attempted) {
+        threes_attempted = mThrees_attempted;
     }
 
     public int getThrees_made() {
@@ -157,4 +162,66 @@ public class Game {
     public void setDate(String mDate) {
         date = mDate;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel mParcel, int mI) {
+        mParcel.writeInt(plusMinus);
+        mParcel.writeInt(PTS);
+        mParcel.writeInt(fouls);
+        mParcel.writeInt(turnovers);
+        mParcel.writeInt(blocks);
+        mParcel.writeInt(steals);
+        mParcel.writeInt(assists);
+        mParcel.writeInt(DRB);
+        mParcel.writeInt(ORB);
+        mParcel.writeInt(FTA);
+        mParcel.writeInt(FTM);
+        mParcel.writeInt(threes_attempted);
+        mParcel.writeInt(threes_made);
+        mParcel.writeInt(FGA);
+        mParcel.writeInt(FGM);
+        mParcel.writeInt(minutes);
+        mParcel.writeString(date);
+    }
+
+    public static final Parcelable.Creator<Game> CREATOR
+            = new Parcelable.Creator<Game>(){
+
+        @Override
+        public Game createFromParcel(Parcel mParcel) {
+            return new Game(mParcel);
+        }
+
+        @Override
+        public Game[] newArray(int mI) {
+            return new Game[mI];
+        }
+    };
+
+    private Game(Parcel mParcel) {
+         plusMinus = mParcel.readInt();
+         PTS= mParcel.readInt();
+         fouls= mParcel.readInt();
+         turnovers= mParcel.readInt();
+         blocks= mParcel.readInt();
+         steals= mParcel.readInt();
+         assists= mParcel.readInt();
+         DRB= mParcel.readInt();
+         ORB= mParcel.readInt();
+         FTA= mParcel.readInt();
+         FTM= mParcel.readInt();
+         threes_attempted= mParcel.readInt();
+         threes_made= mParcel.readInt();
+         FGA= mParcel.readInt();
+         FGM= mParcel.readInt();
+         minutes= mParcel.readInt();
+         date= mParcel.readString();
+    }
+
+
 }

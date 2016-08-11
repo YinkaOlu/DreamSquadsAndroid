@@ -1,9 +1,14 @@
 package besupreme.com.dreamsquads.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import static besupreme.com.dreamsquads.Models.Game.*;
+
 /**
  * Created by yinka_000 on 2016-08-11.
  */
-public class Season {
+public class Season implements Parcelable{
     private Game[] mSeasonGames;
     private double PPG;
     private double APG;
@@ -17,6 +22,9 @@ public class Season {
     private double FGPER;
     private double threePPER;
     private double FTPER;
+
+    public Season(){}
+
 
     public Game[] getSeasonGames() {
         return mSeasonGames;
@@ -124,5 +132,58 @@ public class Season {
 
     public void setFTPER(double mFTPER) {
         FTPER = mFTPER;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel mParcel, int mI) {
+        mParcel.writeTypedArray(mSeasonGames,mI);
+        mParcel.writeDouble(PPG);
+        mParcel.writeDouble(APG);
+        mParcel.writeDouble(RPG);
+        mParcel.writeDouble(TOV);
+        mParcel.writeDouble(fouls);
+        mParcel.writeDouble(BPG);
+        mParcel.writeDouble(plusMinus);
+        mParcel.writeDouble(MPG);
+        mParcel.writeDouble(Steals);
+        mParcel.writeDouble(FGPER);
+        mParcel.writeDouble(threePPER);
+        mParcel.writeDouble(FTPER);
+    }
+
+    public static final Parcelable.Creator<Season> CREATOR
+            = new Parcelable.Creator<Season>(){
+
+        @Override
+        public Season createFromParcel(Parcel mParcel) {
+            return new Season(mParcel);
+        }
+
+        @Override
+        public Season[] newArray(int mI) {
+            return new Season[mI];
+        }
+    };
+
+
+    public Season(Parcel mParcel) {
+        mSeasonGames = mParcel.createTypedArray(Game.CREATOR);
+        PPG = mParcel.readDouble();
+        APG = mParcel.readDouble();
+        RPG = mParcel.readDouble();
+        TOV = mParcel.readDouble();
+        fouls = mParcel.readDouble();
+        BPG = mParcel.readDouble();
+        plusMinus = mParcel.readDouble();
+        MPG = mParcel.readDouble();
+        Steals = mParcel.readDouble();
+        FGPER = mParcel.readDouble();
+        threePPER = mParcel.readDouble();
+        FTPER = mParcel.readDouble();
     }
 }

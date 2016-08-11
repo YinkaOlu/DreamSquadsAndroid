@@ -1,12 +1,8 @@
 package besupreme.com.dreamsquads.Adaptors;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
-import android.provider.Settings;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +18,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -31,7 +26,6 @@ import besupreme.com.dreamsquads.Models.Game;
 import besupreme.com.dreamsquads.Models.Player;
 import besupreme.com.dreamsquads.Models.Roster;
 import besupreme.com.dreamsquads.Models.Season;
-import besupreme.com.dreamsquads.Models.Team;
 import besupreme.com.dreamsquads.R;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -183,13 +177,14 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
             game.setPTS(jsonGame.getInt("PTS"));
             game.setSteals(jsonGame.getInt("STL"));
             game.setThrees_made(jsonGame.getInt("threes_made"));
-            game.setThress_attempted(jsonGame.getInt("threes_attempted"));
+            game.setThrees_attempted(jsonGame.getInt("threes_attempted"));
             game.setTurnovers(jsonGame.getInt("TOV"));
 
             season.setGame(i, game);
         }
 
         Intent intent = new Intent(mContext, ResultActivity.class);
+        intent.putExtra("season_object", season);
         mContext.startActivity(intent);
         //Pass Season
 
