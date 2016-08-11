@@ -1,4 +1,4 @@
-package besupreme.com.dreamsquads.Adapors;
+package besupreme.com.dreamsquads.Adaptors;
 
 import android.content.Context;
 import android.view.View;

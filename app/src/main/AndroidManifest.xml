@@ -24,12 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:theme="@style/Theme.AppCompat.Light"
-            android:name=".Activities.Old"
-            android:label="@string/dream_squads_title">
-
-        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +21,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import besupreme.com.dreamsquads.Adapors.TeamLogoAdapter;
 import besupreme.com.dreamsquads.Fragments.SplashFragment;
 import besupreme.com.dreamsquads.Fragments.TeamGridFragment;
-import besupreme.com.dreamsquads.Models.Player;
 import besupreme.com.dreamsquads.Models.Team;
 import besupreme.com.dreamsquads.R;
 import okhttp3.Call;
@@ -57,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private SplashFragment splashFragment = new SplashFragment();
 
     FragmentManager fragmentManager = getSupportFragmentManager();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

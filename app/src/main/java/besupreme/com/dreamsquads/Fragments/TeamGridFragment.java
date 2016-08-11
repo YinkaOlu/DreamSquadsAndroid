@@ -1,11 +1,12 @@
 package besupreme.com.dreamsquads.Fragments;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import besupreme.com.dreamsquads.Activities.MainActivity;
-import besupreme.com.dreamsquads.Adapors.TeamLogoAdapter;
+import besupreme.com.dreamsquads.Adaptors.TeamLogoAdapter;
 import besupreme.com.dreamsquads.Models.Player;
+import besupreme.com.dreamsquads.Models.Roster;
 import besupreme.com.dreamsquads.Models.Team;
 import besupreme.com.dreamsquads.Models.Teams;
 import besupreme.com.dreamsquads.R;
@@ -41,7 +43,20 @@ public class TeamGridFragment extends Fragment{
     private TextView test;
     private GridView mGridView;
 
+    private FragmentActivity myContext;
+
+    private RosterFragment rosterFragment = new RosterFragment();
+
+    private FragmentManager mFragmentManager;
+
     private static final String ROSTER_URL = "https://fantasy-app.herokuapp.com/api/findRoster/";
+
+    @Override
+    public void onAttach(Activity activity) {
+        myContext=(FragmentActivity) activity;
+        super.onAttach(activity);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,6 +74,7 @@ public class TeamGridFragment extends Fragment{
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+
                 Toast.makeText(getContext(), Teams.TEAM_NAMES[position], Toast.LENGTH_SHORT).show();
 
                 getRoster( getTeamID( Teams.TEAM_NAMES[position] ) );
@@ -105,6 +121,7 @@ public class TeamGridFragment extends Fragment{
                 Log.i(TAG, team.getTeamName() + " has id "+ team.getTeamID() );
 
                 selectedTeamID = team.getTeamID();
+                Roster.TEAM = team;
             }
         }
         return selectedTeamID;
@@ -114,7 +131,7 @@ public class TeamGridFragment extends Fragment{
         Log.i(TAG, "Parsing Roster JSON");
         JSONArray rosterJSONArray = new JSONArray(mRosterJSON);
 
-        Player[] rosterArray = new Player[rosterJSONArray.length()];
+        Roster.roster = new Player[rosterJSONArray.length()];
 
         for(int i  = 0; i < rosterJSONArray.length(); i++ ){
             JSONObject jsonPlayer = rosterJSONArray.getJSONObject(i);
@@ -164,7 +181,18 @@ public class TeamGridFragment extends Fragment{
             }
 
             Log.i( TAG, player.getFirst_name()+" "+player.getLast_name() );
+            Roster.roster[i] = player;
         }
+        setupRosterFragment();
+    }
+
+    private void setupRosterFragment() {
+        FragmentManager fragManager = myContext.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentHolder, rosterFragment, null);
+        fragmentTransaction.addToBackStack("Roster Fragment");
+        fragmentTransaction.commit();
+
     }
 
 }

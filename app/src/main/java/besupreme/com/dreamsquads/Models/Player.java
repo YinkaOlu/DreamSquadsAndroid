@@ -9,7 +9,7 @@ public class Player {
     private String draft_year;
     private String start_date;
     private String position;
-    private int player_number;
+    private int player_number = 999;
     private String last_name;
     private String first_name;
 
@@ -105,4 +105,6 @@ public class Player {
     public void setFirst_name(String mFirst_name) {
         first_name = mFirst_name;
     }
+
+
 }
