@@ -29,7 +29,6 @@
         <activity
             android:name=".Activities.ResultActivity"
             android:label="@string/dream_squads_title"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>

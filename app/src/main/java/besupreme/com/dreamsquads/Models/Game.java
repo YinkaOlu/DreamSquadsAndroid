@@ -16,11 +16,11 @@ public class Game implements Parcelable{
     private int assists;
     private int DRB;
     private int ORB;
-    private int FTA;
+    private int FTA = 0;
     private int FTM;
-    private int threes_attempted;
+    private int threes_attempted = 0;
     private int threes_made;
-    private int FGA;
+    private int FGA = 0;
     private int FGM;
     private int minutes;
     private String date;

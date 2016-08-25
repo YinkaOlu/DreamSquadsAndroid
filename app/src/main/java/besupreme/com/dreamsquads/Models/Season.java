@@ -25,6 +25,44 @@ public class Season implements Parcelable{
 
     public Season(){}
 
+    public String getPPGString(){
+        return Math.round(PPG * 100.0)/100.0 +" Points per Game";
+    }
+    public String getAPGString(){
+        return Math.round(APG * 100.0)/100.0 +" Assists per Game";
+    }
+    public String getRPGString(){
+        return Math.round(RPG * 100.0)/100.0 +" Rebounds per Game";
+    }
+    public String getTOVString(){
+        return Math.round(PPG * 100.0)/100.0 +" TOV per Game";
+    }
+    public String getFoulString(){
+        return Math.round(fouls * 100.0)/100.0 +" Fouls per Game";
+    }
+    public String getBPGString(){
+        return Math.round(BPG * 100.0)/100.0 +" Blocks per Game";
+    }
+    public String getPlusMinusString(){
+        return Math.round(plusMinus * 100.0)/100.0 +" +/- Rating per Game";
+    }
+    public String getFGPerString(){
+        return Math.round(FGPER * 100.0)/100.0 +" Poinst per Game";
+    }
+    public String getMPGString(){
+        return Math.round(MPG * 100.0)/100.0 +" Minutes per Game";
+    }
+    public String getStealsString(){
+        return Math.round(Steals * 100.0)/100.0 +" Steals per Game";
+    }
+    public String getThreePPERString(){
+        return Math.round(threePPER * 100.0)/100.0 +" Poinst per Game";
+    }
+
+    public String getFTPERString(){
+        return Math.round(FTPER * 100.0)/100.0 +" Poinst per Game";
+    }
+
 
     public Game[] getSeasonGames() {
         return mSeasonGames;

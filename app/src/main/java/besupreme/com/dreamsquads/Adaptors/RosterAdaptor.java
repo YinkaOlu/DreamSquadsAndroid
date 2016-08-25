@@ -53,6 +53,8 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, final int position) {
+        //holder.choose_player_title.setBackgroundColor( Color.parseColor( "#"+Roster.TEAM.getPrimaryColour() ));
+
         String urlPlayerName = mPlayers[position].getFirst_name() + "%20"+ mPlayers[position].getLast_name();
         String profileURL = "https://fantasy-app.herokuapp.com/images/profilePics/"+urlPlayerName+".png";
         Log.i("IMAGE URL", profileURL);
@@ -145,14 +147,14 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
                 String teamJSON = response.body().string();
                 Log.i(TAG,teamJSON);
                 try {
-                    parseSeasonGames(teamJSON);
+                    parseSeasonGames(teamJSON, mPlayer);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
-    private void parseSeasonGames(String seasonGamesJSON) throws JSONException {
+    private void parseSeasonGames(String seasonGamesJSON, Player mPlayer) throws JSONException {
         Log.i(TAG, "Parsing Season Games");
         JSONArray seasonGameJSONArray = new JSONArray(seasonGamesJSON);
 
@@ -185,6 +187,7 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
 
         Intent intent = new Intent(mContext, ResultActivity.class);
         intent.putExtra("season_object", season);
+        intent.putExtra("player_object", mPlayer);
         mContext.startActivity(intent);
         //Pass Season
 
@@ -209,6 +212,7 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
         private TextView playerPositionText;
         private RelativeLayout playerLayout;
         private Button getStatsBtn;
+        private TextView choose_player_title;
 
         public ListViewHolder(View itemView) {
             super(itemView);
@@ -219,6 +223,7 @@ public class RosterAdaptor extends RecyclerView.Adapter<RosterAdaptor.ListViewHo
             playerPositionText = (TextView) itemView.findViewById(R.id.player_position_text);
             playerLayout = (RelativeLayout) itemView.findViewById(R.id.playerItem);
             getStatsBtn = (Button) itemView.findViewById(R.id.get_stats_btn);
+            choose_player_title = (TextView) itemView.findViewById(R.id.choose_player_title);
         }
     }
 

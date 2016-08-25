@@ -1,9 +1,12 @@
 package besupreme.com.dreamsquads.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by yinka_000 on 2016-08-10.
  */
-public class Player {
+public class Player implements Parcelable{
     private String player_id;
     private String preNBA_team;
     private String draft_year;
@@ -106,5 +109,57 @@ public class Player {
         first_name = mFirst_name;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel mParcel, int mI) {
+        mParcel.writeString(player_id);
+        mParcel.writeString(preNBA_team);
+        mParcel.writeString(draft_year);
+        mParcel.writeString(start_date);
+        mParcel.writeString(position);
+        mParcel.writeInt(player_number);
+        mParcel.writeString(last_name);
+        mParcel.writeString(first_name);
+        mParcel.writeInt(weight);
+        mParcel.writeInt(height);
+        mParcel.writeString(birthDate);
+    }
+
+    public static final Parcelable.Creator<Player> CREATOR
+            = new Parcelable.Creator<Player>(){
+
+        @Override
+        public Player createFromParcel(Parcel mParcel) {
+            return new Player(mParcel);
+        }
+
+        @Override
+        public Player[] newArray(int mI) {
+            return new Player[mI];
+        }
+    };
+
+    public Player(){}
+
+    public Player(Parcel mParcel){
+        player_id = mParcel.readString();
+        preNBA_team = mParcel.readString();
+        draft_year = mParcel.readString();
+        start_date = mParcel.readString();
+        position = mParcel.readString();
+        player_number = mParcel.readInt();
+        last_name = mParcel.readString();
+        first_name = mParcel.readString();
+
+        weight = mParcel.readInt();
+        height = mParcel.readInt();
+
+        birthDate = mParcel.readString();
+    }
 
 }
